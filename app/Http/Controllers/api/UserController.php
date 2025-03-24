@@ -82,12 +82,28 @@ public function update(UserRequest $request, User $user): JsonResponse
         ], 400);
     }
     
+}
 
+public function destroy(User $user): JsonResponse
+{   
+    try {
+        $user->delete();
+        return response()->json([
+            'status'=> true,
+            'message'=> 'User deleted successfully', 
+        ],  200);
+    } catch (Exception $e) {
+        return response()->json([
+            'status'=> false,
+            'message'=> 'User not deleted', 
+        ], 400);
+    }
+
+
+}
+}
 
 
 
 
    
-}
-
-} 
